@@ -82,7 +82,7 @@ The example job is in [main.py](main.py). It processes a single message from the
 
 ## Details
 
-There are two pieces to any event-driven job in Azure Container Apps: the job and the scale rule. They must be configured so that they work together to ensure the job runs executions when messages appear in the queue.
+There are two pieces to any event-driven job in Azure Container Apps: the job and the scale rule. They must be configured so that the scale rule monitors the same queue that the job executions process messages from. In the above configuration, the scale rule uses the same configuration values as the job's environment variables.
 
 ### Job
 
