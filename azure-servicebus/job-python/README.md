@@ -6,7 +6,7 @@ Before you begin, make sure you create an Azure Container Apps environment and a
 
 The example job is in [main.py](main.py). It processes a single message from the queue and exits. The job is triggered by a message in the queue using the scale rule you define below.
 
-## Instructions
+## Deployment
 
 1. For simplicity, you'll name the Azure Service Bus namespace the same as the Azure Container Registry:
 
@@ -80,7 +80,7 @@ The example job is in [main.py](main.py). It processes a single message from the
     - In the left-hand menu, select **Execution History**.
     - You should see a new execution for the job.
 
-## Explanation
+## Details
 
 There are two pieces to any event-driven job in Azure Container Apps: the job and the scale rule. They must be configured so that they work together to ensure the job runs executions when messages appear in the queue.
 
