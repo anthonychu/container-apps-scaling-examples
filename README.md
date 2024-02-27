@@ -54,3 +54,7 @@ The instructions are written for Bash. If you're using a different shell, you ma
     ```
 
 You can now use the examples in this repository to learn how to configure scaling for your Azure Container Apps environment.
+
+## Examples
+
+- [Azure Service Bus job](azure-servicebus/job-python/README.md)
