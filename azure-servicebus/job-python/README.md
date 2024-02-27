@@ -92,6 +92,8 @@ The job performs these steps:
 1. Completes the message (removing it from the queue).
 1. Exits.
 
+> Note that it's important to complete the message only after the job execution has finished processing it. If the job fails, the message will be unlocked and another job execution can process it. In long running jobs, waiting until the job has finished processing the message before completing will ensure scaling is more accurate.
+
 The job is configured with the following environment variables that it needs to run:
 
 - `SERVICE_BUS_CONNECTION_STRING`: The connection string for the Azure Service Bus namespace, stored in a secret.
@@ -128,6 +130,18 @@ new_executions = max(max_executions - (queue_message_count / messageCount) - run
 #### Multiple messages per execution
 
 Sometimes it's more efficient to process multiple messages per execution. To do this, you can change the `messageCount` in the scale rule configuration to a higher number. The job must be modified to process the number of messages specified in the scale rule configuration.
+
+#### Change the number of concurrent executions
+
+You can change the `max-executions` in the scale rule configuration to control the number of concurrent executions.
+
+#### Advanced job and scaler configuration
+
+For more advanced job and scale rule configuration, see the [Azure Container Apps documentation](https://learn.microsoft.com/en-us/azure/container-apps/jobs?tabs=azure-cli#advanced-job-configuration).
+
+For longer running jobs, increase the `replica-timeout`.
+
+Other settings such as `polling-interval`, `parallelism`, and `replica-completion-count` are advanced settings and should be used with caution.
 
 #### Lock renewer
 
